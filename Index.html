@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Princess Angel & Ron</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Great+Vibes&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+--primary:#d8c3a5;
+--secondary:#f7f2ec;
+--dark:#5d534a;
+}
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:'Cormorant Garamond',serif;
+background:var(--secondary);
+color:var(--dark);
+overflow-x:hidden;
+}
+
+.hero{
+height:100vh;
+background:
+linear-gradient(rgba(0,0,0,.35),rgba(0,0,0,.35)),
+url('hero.jpg');
+background-size:cover;
+background-position:center;
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+color:white;
+}
+
+.hero-content h1{
+font-family:'Great Vibes',cursive;
+font-size:5rem;
+}
+
+.hero-content h2{
+font-size:2rem;
+font-weight:300;
+}
+
+.section{
+padding:80px 20px;
+max-width:1200px;
+margin:auto;
+text-align:center;
+}
+
+.section-title{
+font-size:3rem;
+margin-bottom:30px;
+font-family:'Great Vibes',cursive;
+color:#b89b72;
+}
+
+.countdown{
+display:flex;
+justify-content:center;
+gap:20px;
+flex-wrap:wrap;
+}
+
+.box{
+background:white;
+padding:20px;
+width:120px;
+border-radius:15px;
+box-shadow:0 5px 20px rgba(0,0,0,.1);
+}
+
+.box span{
+font-size:2rem;
+font-weight:bold;
+display:block;
+}
+
+.gallery{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:15px;
+}
+
+.gallery img{
+width:100%;
+height:300px;
+object-fit:cover;
+border-radius:15px;
+cursor:pointer;
+transition:.4s;
+}
+
+.gallery img:hover{
+transform:scale(1.03);
+}
+
+.timeline{
+max-width:700px;
+margin:auto;
+text-align:left;
+line-height:2;
+font-size:1.2rem;
+}
+
+.rsvp{
+max-width:500px;
+margin:auto;
+}
+
+input, textarea{
+width:100%;
+padding:12px;
+margin:10px 0;
+border:1px solid #ddd;
+border-radius:8px;
+}
+
+button{
+background:var(--primary);
+border:none;
+padding:15px 30px;
+cursor:pointer;
+border-radius:8px;
+}
+
+footer{
+background:#d8c3a5;
+padding:30px;
+text-align:center;
+}
+
+.music-btn{
+position:fixed;
+right:20px;
+bottom:20px;
+background:white;
+padding:15px;
+border-radius:50%;
+box-shadow:0 0 10px rgba(0,0,0,.2);
+cursor:pointer;
+}
+
+</style>
+</head>
+
+<body>
+
+<section class="hero">
+<div class="hero-content">
+<h1>Princess Angel</h1>
+<h2>&</h2>
+<h1>Ron Dominick</h1>
+<p>July 26, 2027 • Maldives</p>
+</div>
+</section>
+
+<section class="section">
+<h2 class="section-title">Countdown</h2>
+
+<div class="countdown">
+<div class="box">
+<span id="days">0</span>
+Days
+</div>
+
+<div class="box">
+<span id="hours">0</span>
+Hours
+</div>
+
+<div class="box">
+<span id="minutes">0</span>
+Minutes
+</div>
+
+<div class="box">
+<span id="seconds">0</span>
+Seconds
+</div>
+</div>
+</section>
+
+<section class="section">
+<h2 class="section-title">Our Story</h2>
+
+<p>
+Every love story is beautiful,
+but ours is our favorite.
+Together we begin our forever.
+</p>
+</section>
+
+<section class="section">
+<h2 class="section-title">Gallery</h2>
+
+<div class="gallery">
+<img src="photo1.jpg">
+<img src="photo2.jpg">
+<img src="photo3.jpg">
+<img src="photo4.jpg">
+<img src="photo5.jpg">
+<img src="photo6.jpg">
+</div>
+</section>
+
+<section class="section">
+<h2 class="section-title">Wedding Timeline</h2>
+
+<div class="timeline">
+• Guest Arrival<br>
+• Ceremony<br>
+• Couple Photos<br>
+• Reception<br>
+• Dinner<br>
+• First Dance<br>
+• Celebration
+</div>
+</section>
+
+<section class="section">
+<h2 class="section-title">Location</h2>
+
+<iframe
+width="100%"
+height="400"
+style="border:0"
+loading="lazy"
+allowfullscreen
+src="https://maps.google.com/maps?q=Maldives&t=&z=6&ie=UTF8&iwloc=&output=embed">
+</iframe>
+</section>
+
+<section class="section">
+<h2 class="section-title">RSVP</h2>
+
+<form class="rsvp">
+<input type="text" placeholder="Your Name">
+<textarea placeholder="Message"></textarea>
+<button type="submit">Send RSVP</button>
+</form>
+</section>
+
+<footer>
+Princess Angel & Ron Dominick • July 26, 2027
+</footer>
+
+<audio id="music" loop>
+<source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<div class="music-btn" onclick="toggleMusic()">
+🎵
+</div>
+
+<script>
+
+const targetDate = new Date("July 26, 2027 00:00:00").getTime();
+
+setInterval(() => {
+
+const now = new Date().getTime();
+const distance = targetDate - now;
+
+document.getElementById("days").innerHTML =
+Math.floor(distance/(1000*60*60*24));
+
+document.getElementById("hours").innerHTML =
+Math.floor((distance%(1000*60*60*24))/(1000*60*60));
+
+document.getElementById("minutes").innerHTML =
+Math.floor((distance%(1000*60*60))/(1000*60));
+
+document.getElementById("seconds").innerHTML =
+Math.floor((distance%(1000*60))/1000);
+
+},1000);
+
+function toggleMusic(){
+const music=document.getElementById("music");
+
+if(music.paused){
+music.play();
+}else{
+music.pause();
+}
+}
+
+</script>
+
+</body>
+</html>
+```
